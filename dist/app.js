@@ -16,3 +16,4 @@ String.prototype.getDateRegex = function (start, end = 0, incrementer = 0){
   return '(' + reg + ')'
 }
 
+console.log(12323)
