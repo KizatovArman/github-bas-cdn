@@ -15,6 +15,8 @@ function getDateRegex(startDate, endDate){
     let yyyy = today.getFullYear()
     endDate = yyyy + '-' + mm + '-' + dd
   }
+  console.log(startDate)
+  console.log(endDate)
   let startDay = parseInt(startDate.substring(8))
   let startMonth = parseInt(startDate.substring(5,7))
   let startYear = parseInt(startDate.substring(0,4))
