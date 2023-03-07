@@ -3,20 +3,16 @@ String.prototype.myDateFormat = function(){
   return this.split('-').reverse().join('/').substring(0, this.length)
 }
 
+function getSubDateRegex(start, end = 0, incrementer = 0){
+  let reg = start < 10 ? `0${start}{1}`: `${start}{1}`  
+  for(let i = start + incrementer + 1; i <= end; i++){
+      reg += i < 10 ? `|0${i}{1}`: `|${i}{1}`
+  } 
+  return '(' + reg + ')'
+}
 
 function getDateRegex(startDate, endDate){
-  if (!startDate) {
-    startDate = '1991-01-01'
-  }
-  if(!endDate){
-    let today = new Date()
-    let dd = String(today.getDate()).padStart(2, '0')
-    let mm = String(today.getMonth() + 1).padStart(2, '0')
-    let yyyy = today.getFullYear()
-    endDate = yyyy + '-' + mm + '-' + dd
-  }
-  console.log(startDate)
-  console.log(endDate)
+
   let startDay = parseInt(startDate.substring(8))
   let startMonth = parseInt(startDate.substring(5,7))
   let startYear = parseInt(startDate.substring(0,4))
@@ -76,12 +72,4 @@ function getDateRegex(startDate, endDate){
 
   }
     return regex
-}
-
-function getSubDateRegex(start, end = 0, incrementer = 0){
-  let reg = start < 10 ? `0${start}{1}`: `${start}{1}`  
-  for(let i = start + incrementer + 1; i <= end; i++){
-      reg += i < 10 ? `|0${i}{1}`: `|${i}{1}`
-  } 
-  return '(' + reg + ')'
 }
