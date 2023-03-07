@@ -1,13 +1,20 @@
 
-
-console.log(getDateRegex('2022-02-05', '2024-03-07'))
-
 String.prototype.myDateFormat = function(){
   return this.split('-').reverse().join('/').substring(0, this.length)
 }
 
 
 function getDateRegex(startDate, endDate){
+  if (!startDate) {
+    startDate = '1991-01-01'
+  }
+  if(!endDate){
+    let today = new Date()
+    let dd = String(today.getDate()).padStart(2, '0')
+    let mm = String(today.getMonth() + 1).padStart(2, '0')
+    let yyyy = today.getFullYear()
+    endDate = yyyy + '-' + mm + '-' + dd
+  }
   let startDay = parseInt(startDate.substring(8))
   let startMonth = parseInt(startDate.substring(5,7))
   let startYear = parseInt(startDate.substring(0,4))
@@ -76,4 +83,3 @@ function getSubDateRegex(start, end = 0, incrementer = 0){
   } 
   return '(' + reg + ')'
 }
-
